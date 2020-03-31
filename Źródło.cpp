@@ -9,6 +9,7 @@ using namespace std;
 
 int main()
 {
+
 	Logowanie logowanie = Logowanie();
 	//Pracownik pracownik = Pracownik();
 	string rola = logowanie.menulogowania();

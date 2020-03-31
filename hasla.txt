@@ -4,3 +4,4 @@ sd ds sprzedawca
 manager 123 manager
 chebcia chebcia sprzedawca
 men men manager
+Admin1 Admin1. admin

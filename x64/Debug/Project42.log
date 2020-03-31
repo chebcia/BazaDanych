@@ -1,0 +1,28 @@
+﻿  Admin.cpp
+  lek.cpp
+  ListaLekow.cpp
+  Logowanie.cpp
+d:\github\studia-c-plus-plus\project42\project42\logowanie.cpp(17): warning C4551: function call missing argument list
+d:\github\studia-c-plus-plus\project42\project42\logowanie.cpp(79): warning C4101: 'schowek': unreferenced local variable
+  Magazyn.cpp
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(67): warning C4101: 'refundacja': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(69): warning C4101: 'ograniczenia': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(68): warning C4101: 'cena': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(70): warning C4101: 'iloscsztuk': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(82): warning C4101: 'e': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(103): warning C4101: 'e': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(121): warning C4101: 'iloscsztuk': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(137): warning C4101: 'e': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(183): warning C4101: 'e': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(252): warning C4101: 'e': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(306): warning C4101: 'e': unreferenced local variable
+d:\github\studia-c-plus-plus\project42\project42\magazyn.cpp(334): warning C4101: 'e': unreferenced local variable
+  Manager.cpp
+d:\github\studia-c-plus-plus\project42\project42\magazyn.h(64): warning C4101: 'e': unreferenced local variable
+  d:\github\studia-c-plus-plus\project42\project42\manager.cpp(66): note: see reference to function template instantiation 'void Magazyn::usunlek<std::string>(std::string,std::string)' being compiled
+  Pracownik.cpp
+  RODZAJ.cpp
+  Sprzedawca.cpp
+  Źródło.cpp
+  Generating Code...
+  Project42.vcxproj -> D:\GitHub\studia-C-plus-plus\Project42\x64\Debug\Project42.exe
