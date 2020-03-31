@@ -63,7 +63,7 @@ void Manager::usunLek()
 {
 	Lek lek = podajNazweIRodzaj();
 	Magazyn magazyn = Magazyn();
-	magazyn.usunlek(lek.getNazwaleku(), lek.getRodzajleku());
+	magazyn.usunlek<string>(lek.getNazwaleku(), lek.getRodzajleku());
 	menu();
 }
 
