@@ -14,11 +14,29 @@ void Admin::dodajUzytkownika()
 	cout << "rola: "<<endl;
 	cin >> rola;
 
+	int id=1;
+	string linia;
+	ifstream plik1("hasla.txt");
+	
+	if (plik1)
+	{
+		int aktualneID;
+		while (getline(plik1, linia))
+		{
+			
+			if (atoi(linia.c_str()) >id )
+			{
+				id = atoi(linia.c_str());
+			}
+		}
+		plik1.close();
+	}
+	id++;
 	ofstream plik( "hasla.txt", ios::out | ios::app);
 	try
 	{
-		plik << login << " " << haslo << " " << rola << '\n';
-		plik.close(); //obowi¹zkowo nale¿y zamkn¹æ plik
+		plik <<id <<" "<< login << " " << haslo << " " << rola << '\n';
+		plik.close(); //obowiÄ…zkowo naleÅ¼y zamknÄ…Ä‡ plik
 		menu();
 	}
 	catch (exception e)
@@ -41,13 +59,16 @@ void Admin::usunUzytkownika()
 	{
 		string linia;
 		string loginzpliku;
-		// u¿ycie vectora jako kontenera stl
+		// uÅ¼ycie vectora jako kontenera stl
 		std::vector<string> liniezpliku;
 		while (getline(plik, linia)) {
 			char * schowek;
 			char* skonwertowany = new char[linia.length() + 1];
 			strcpy(skonwertowany, linia.c_str());
 			schowek = strtok(skonwertowany, " ");
+
+			//druga kolumna, login
+			schowek = strtok(NULL, " ");
 
 			cout << schowek << endl;
 			loginzpliku = schowek;
@@ -87,28 +108,29 @@ Admin::Admin()
 
 void Admin::menu()
 {
-
-
-	cout << "1.Dodaj uzytkownika" << endl;
-	cout << "2.Usun uzytkownika" << endl;
-	cout << "0.Wyjdz" << endl;
-
-	int opcja;
-	cin >> opcja;
-
-	switch (opcja)
+	int opcja = 1;
+	while (opcja != 0)
 	{
-	case 1:
-		dodajUzytkownika();
-		break;
-	case 2:
-		usunUzytkownika();
-		break;
-	case 0:
-		exit(0);
 
-	default:
-		cout << "Bledna opcja" << endl;
-		menu();
+		cout << "1.Dodaj uzytkownika" << endl;
+		cout << "2.Usun uzytkownika" << endl;
+		cout << "0.Wyjdz" << endl;
+
+		cin >> opcja;
+
+		switch (opcja)
+		{
+		case 1:
+			dodajUzytkownika();
+			break;
+		case 2:
+			usunUzytkownika();
+			break;
+		case 0:
+			exit(0);
+
+		default:
+			cout << "Bledna opcja" << endl;
+		}
 	}
 }
