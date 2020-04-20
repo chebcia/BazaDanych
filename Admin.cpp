@@ -14,38 +14,61 @@ void Admin::dodajUzytkownika()
 	cout << "rola: "<<endl;
 	cin >> rola;
 
-	ofstream plik( "hasla.txt", ios::out | ios::app);
-	if (plik.good() == true)
+	int id=1;
+	string linia;
+	ifstream plik1("hasla.txt");
+	
+	if (plik1)
 	{
-		plik << login << " " << haslo << " " << rola << '\n';
+		int aktualneID;
+		while (getline(plik1, linia))
+		{
+			
+			if (atoi(linia.c_str()) >id )
+			{
+				id = atoi(linia.c_str());
+			}
+		}
+		plik1.close();
+	}
+	id++;
+	ofstream plik( "hasla.txt", ios::out | ios::app);
+	try
+	{
+		plik <<id <<" "<< login << " " << haslo << " " << rola << '\n';
 		plik.close(); //obowi¹zkowo nale¿y zamkn¹æ plik
 		menu();
 	}
-	else {
-		cout << "blad podczas dostepu do bazy uzytkownikow";
+	catch (exception e)
+	{
+		cout << "Blad podczas dostepu do bazy uzytkownikow"<<endl;
+		plik.close();
 	}
 
 }
 
 void Admin::usunUzytkownika()
 {
-	cout << "Podaj login uzytkownika ktory ma zostac usuniety";
+	cout << "Podaj login uzytkownika ktory ma zostac usuniety"<<endl;
 	string login;
-	cout << "Login: ";
+	cout << "Login: "<<endl;
 	cin >> login;
 
 	fstream plik("hasla.txt", std::ios::in);
-
-	if (plik.good() == true)
+	try
 	{
 		string linia;
 		string loginzpliku;
-		vector<string> liniezpliku;
+		// u¿ycie vectora jako kontenera stl
+		std::vector<string> liniezpliku;
 		while (getline(plik, linia)) {
 			char * schowek;
 			char* skonwertowany = new char[linia.length() + 1];
 			strcpy(skonwertowany, linia.c_str());
 			schowek = strtok(skonwertowany, " ");
+
+			//druga kolumna, login
+			schowek = strtok(NULL, " ");
 
 			cout << schowek << endl;
 			loginzpliku = schowek;
@@ -59,15 +82,20 @@ void Admin::usunUzytkownika()
 		plik.close();
 		plik.open("hasla.txt", std::ofstream::out | std::ofstream::trunc);
 		if (plik.good()) {
-			for (int i = 0; i < liniezpliku.size(); i++) {
-				plik << liniezpliku.at(i);
+			// iterator stl 
+			std::vector<string>::iterator cell = liniezpliku.begin();
+			for (cell; cell!=liniezpliku.end(); cell++) {
+
+				plik << *cell;
 			}
 		}
 		plik.close();
 	
 	}
-	else {
-		cout << "blad podczas dostepu do bazy uzytkownikow";
+	catch(exception e)
+	{
+		cout << "Blad podczas dostepu do bazy uzytkownikow"<<endl;
+		plik.close();
 	}
 
 
@@ -80,28 +108,29 @@ Admin::Admin()
 
 void Admin::menu()
 {
-
-
-	cout << "1.Dodaj uzytkownika" << endl;
-	cout << "2.Usun uzytkownika" << endl;
-	cout << "0.Wyjdz" << endl;
-
-	int opcja;
-	cin >> opcja;
-
-	switch (opcja)
+	int opcja = 1;
+	while (opcja != 0)
 	{
-	case 1:
-		dodajUzytkownika();
-		break;
-	case 2:
-		usunUzytkownika();
-		break;
-	case 0:
-		exit(0);
 
-	default:
-		cout << "Bledna opcja";
-		menu();
+		cout << "1.Dodaj uzytkownika" << endl;
+		cout << "2.Usun uzytkownika" << endl;
+		cout << "0.Wyjdz" << endl;
+
+		cin >> opcja;
+
+		switch (opcja)
+		{
+		case 1:
+			dodajUzytkownika();
+			break;
+		case 2:
+			usunUzytkownika();
+			break;
+		case 0:
+			exit(0);
+
+		default:
+			cout << "Bledna opcja" << endl;
+		}
 	}
 }

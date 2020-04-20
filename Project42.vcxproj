@@ -127,6 +127,7 @@
     <ClCompile Include="Pracownik.cpp" />
     <ClCompile Include="RODZAJ.cpp" />
     <ClCompile Include="Sprzedawca.cpp" />
+    <ClCompile Include="ZarzadzanieLekami.cpp" />
     <ClCompile Include="Źródło.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -139,6 +140,7 @@
     <ClInclude Include="Pracownik.h" />
     <ClInclude Include="RODZAJ.h" />
     <ClInclude Include="Sprzedawca.h" />
+    <ClInclude Include="ZarzadzanieLekami.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,4 @@
+﻿  Magazyn.cpp
+c:\users\natalia cheba\desktop\pkostateczna\project42\project42\magazyn.cpp(113): warning C4101: "iloscsztuk": lokalna zmienna, do której nie istnieje odwołanie
+c:\users\natalia cheba\desktop\pkostateczna\project42\project42\magazyn.cpp(228): warning C4018: "<": niezgodność typu ze znakiem/bez znaku
+  Project42.vcxproj -> C:\Users\Natalia Cheba\Desktop\pkostateczna\Project42\Debug\Project42.exe

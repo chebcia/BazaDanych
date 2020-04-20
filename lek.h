@@ -21,7 +21,7 @@ private:
 
 public:
 
-	Lek(  string nazwaleku,string rodzajleku, bool refundacja, double cena, int ograniczenia,string numerserii, int iloscsztuk);
+	Lek(string nazwaleku,string rodzajleku, bool refundacja, double cena, int ograniczenia,string numerserii, int iloscsztuk);
 	Lek(string nazwaleku, bool refundacja, double cena, int ograniczenia, string numerserii,  int iloscsztuk);
 	Lek(string nazwaleku, string rodzajleku);
 
@@ -96,6 +96,9 @@ public:
 	bool getRefundacja() const {
 		return refundacja;
 	}
-
+	string getRodzajLeku() const
+	{
+		return rodzajleku;
+	}
 	
 };

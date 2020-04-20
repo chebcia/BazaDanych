@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream> 
 #include <iostream>
+#include <regex>
 using namespace std;
 class Logowanie {
 
