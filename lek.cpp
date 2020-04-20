@@ -16,7 +16,6 @@ Lek::Lek(string nazwaleku, string rodzajleku, bool refundacja, double cena, int 
 	this->refundacja = refundacja;
 
 }
-
 Lek::Lek(string nazwaleku, bool refundacja, double cena, int ograniczenia, string numerserii, int iloscsztuk)
 {
 	this->nazwaleku = nazwaleku;

@@ -96,6 +96,9 @@ public:
 	bool getRefundacja() const {
 		return refundacja;
 	}
-
+	string getRodzajLeku() const
+	{
+		return rodzajleku;
+	}
 	
 };

@@ -57,7 +57,7 @@ string Logowanie::menulogowania()
 	}
 	else 
 	{
-		cout << "Zly login lub haslo" << endl;
+		cout << "login i haslo nie spelnia wymagan" << endl;
 		return " ";
 	}
 	
@@ -82,7 +82,8 @@ string Logowanie::zalogujSie(string login, string haslo)
 			if (strlen(skonwertowany) == 0) {
 				break;
 			}
-			string loginzPliku = strtok(skonwertowany, " ");
+			string id = strtok(skonwertowany, " ");
+			string loginzPliku = strtok(NULL, " ");
 			string haslozPliku = strtok(NULL, " ");
 			if (login == loginzPliku && haslo == haslozPliku) {
 				plik.close();

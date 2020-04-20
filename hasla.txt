@@ -1,7 +1,14 @@
-admin admin admin
-log 123 sprzedawca
-sd ds sprzedawca
-manager 123 manager
-chebcia chebcia sprzedawca
-men men manager
-Admin1 Admin1. admin
+3 admin admin admin
+4 log 123 sprzedawca
+6 sd ds sprzedawca
+7 Manager1 Manager1. manager
+10 Chebcia1 Chebcia1. sprzedawca
+8 men men manager
+9 Admin1 Admin1. admin
+5 Tomasz1 Tom12345. sprzedawca
+10 nowy nowy1. admin
+10 Wtf1 Wtf1. admin
+12 wa wa sprzedawca
+13 Shop1 Shop1. manager
+14 Chebcia1 Chebcia1. manager
+15 Nowy1 Nowy1. manager

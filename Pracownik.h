@@ -18,6 +18,7 @@ protected:
 	string login;
 	string haslo;
 	string rola;
+	int nrID;
 
 
 };

@@ -1,12 +1,13 @@
 #pragma once
 #include "ListaLekow.h"
-
+#include "ZarzadzanieLekami.h"
 
 class Magazyn {
-
+	ZarzadzanieLekami zarzadzanieLekami = ZarzadzanieLekami();
 public:
 	Magazyn() {};
 	Lek* znajdzlek(string nazwaleku, string nazwarodzaju);
+	Listalekow* znajdzLeki();
 	void dodajlek();
 	void znajdzzamiennik(string choroba);
 	template <typename T> void usunlek(string nazwaleku, string nazwarodzaju)
@@ -30,29 +31,32 @@ public:
 				char* skonwertowany = new char[linia.length() + 1];
 				strcpy(skonwertowany, linia.c_str());
 				schowek = strtok(skonwertowany, " ");
+				if (linia.compare("") != 0)
+				{
+					//while (schowek != NULL) {
+					cout << schowek << endl;
+					nazwalekuzpliku = schowek;
+					if (nazwaleku != nazwalekuzpliku) {
 
-				//while (schowek != NULL) {
-				cout << schowek << endl;
-				nazwalekuzpliku = schowek;
-				if (nazwaleku != nazwalekuzpliku) {
-					schowek = strtok(NULL, " ");
-					refundacja = schowek;
+						schowek = strtok(NULL, " ");
+						refundacja = schowek;
 
-					schowek = strtok(NULL, " ");
-					cena = stoi(schowek);
+						schowek = strtok(NULL, " ");
+						cena = stoi(schowek);
 
-					schowek = strtok(NULL, " ");
-					ograniczenia = stoi(schowek);
+						schowek = strtok(NULL, " ");
+						ograniczenia = stoi(schowek);
 
-					schowek = strtok(NULL, " ");
-					iloscsztuk = stoi(schowek);
+						schowek = strtok(NULL, " ");
+						iloscsztuk = stoi(schowek);
 
-					schowek = strtok(NULL, " ");
-					numerserii = schowek;
+						schowek = strtok(NULL, " ");
+						numerserii = schowek;
 
-					Lek* lek = new Lek(nazwalekuzpliku, refundacja, cena, ograniczenia, numerserii, iloscsztuk);
-					lista->dodajlekdolisty(lek, lista);
+						Lek* lek = new Lek(nazwalekuzpliku, refundacja, cena, ograniczenia, numerserii, iloscsztuk);
+						lista->dodajlekdolisty(lek, lista);
 
+					}
 				}
 
 				delete skonwertowany;

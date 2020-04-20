@@ -36,7 +36,7 @@ void Admin::dodajUzytkownika()
 	try
 	{
 		plik <<id <<" "<< login << " " << haslo << " " << rola << '\n';
-		plik.close(); //obowiÄ…zkowo naleÅ¼y zamknÄ…Ä‡ plik
+		plik.close(); //obowi¹zkowo nale¿y zamkn¹æ plik
 		menu();
 	}
 	catch (exception e)
@@ -59,7 +59,7 @@ void Admin::usunUzytkownika()
 	{
 		string linia;
 		string loginzpliku;
-		// uÅ¼ycie vectora jako kontenera stl
+		// u¿ycie vectora jako kontenera stl
 		std::vector<string> liniezpliku;
 		while (getline(plik, linia)) {
 			char * schowek;

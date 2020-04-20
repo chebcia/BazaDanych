@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+
 Lek* Magazyn::znajdzlek(string nazwaleku, string nazwarodzaju) //parametr metody z klasy lek
 {
 	fstream plik;
@@ -24,11 +26,18 @@ Lek* Magazyn::znajdzlek(string nazwaleku, string nazwarodzaju) //parametr metody
 			int iloscsztuk;
 			string numerserii;
 			getline(plik, napis, '\n');
-			stringstream ss(napis);
-			ss >> nazwazpliku >> refundacja >> cena >> ograniczenia >> iloscsztuk >> numerserii;
-			if (nazwazpliku == nazwaleku)
+			if (napis.compare("") != 0)
 			{
-				return new Lek(nazwaleku, cena, refundacja, ograniczenia, numerserii, iloscsztuk);
+				stringstream ss(napis);
+				ss >> nazwazpliku >> refundacja >> cena >> ograniczenia >> iloscsztuk >> numerserii;
+				if (nazwazpliku == nazwaleku)
+				{
+					return new Lek(nazwaleku, cena, refundacja, ograniczenia, numerserii, iloscsztuk);
+					plik.close();
+				}
+			}
+			else
+			{
 				plik.close();
 			}
 		}
@@ -42,6 +51,11 @@ Lek* Magazyn::znajdzlek(string nazwaleku, string nazwarodzaju) //parametr metody
 		plik.close();
 		return nullptr;
 	}
+}
+
+Listalekow * Magazyn::znajdzLeki()
+{
+	return zarzadzanieLekami.znajdzLekarstwa();
 }
 
 void Magazyn::dodajlek()
@@ -65,6 +79,7 @@ void Magazyn::dodajlek()
 	else
 	{
 		bool refundacja;
+		string refundacjaString;
 		double cena;
 		int ograniczenia;
 		int iloscsztuk;
@@ -73,10 +88,33 @@ void Magazyn::dodajlek()
 		ofstream plik;
 		// je¿eli otwarcie pliku by siê nie powiod³o rzucany jest wyj¹tek który ³apie instrukcja catch
 		// je¿eli do jakiegoœ obiektu nie mo¿na by³o by siê odwo³aæ to rzucany jest wyj¹tek exception
+
+
+		cout << "podaj cene : ";
+		cin >> cena;
+		cout << "podaj ograniczenia : ";
+		cin >> ograniczenia;
+		cout << "podaj ilosc sztuk : ";
+		cin >> iloscsztuk;
+		cout << "czy refundacja jest (tak/nie): ";
+		getline(cin, refundacjaString);
+		getline(cin, refundacjaString);//enter od razu wczytuje linie po cin i powoduje ze trzeba 2 razy sczytac
+		cout << "podaj numer serii: ";
+		getline(cin, numerserii);
+		if (refundacjaString.compare("tak") == 0)
+		{
+			refundacja = true;
+		}
+		else
+			if (refundacjaString.compare("nie") == 0)
+			{
+				refundacja = false;
+			}
+
 		try 
 		{
 			plik.open(nazwarodzaju + ".txt", ios::out | ios::app);
-			plik << nazwarodzaju << " " << numerserii;
+			plik << nazwaleku << " " << refundacja << " " << cena << " " << ograniczenia << " " << iloscsztuk << " " << numerserii << "\n";
 			plik.close(); //obowi¹zkowo nale¿y zamkn¹æ plik
 		}
 		catch (const exception &e)
@@ -96,6 +134,7 @@ void Magazyn::dodajlek()
 				cin >> choroba;
 				zamienniki << choroba + " ";
 			}
+			zamienniki << "\n";
 
 			zamienniki.close();
 		}
@@ -124,12 +163,15 @@ void Magazyn::znajdzzamiennik(string choroba)
 			char* skonwertowany = new char[napis.length() + 1];
 			strcpy(skonwertowany, napis.c_str());
 			schowek = strtok(skonwertowany, " ");
+			if (napis.compare("") != 0)
+			{
 			nazwazpliku = schowek;
-			while (schowek != NULL) {
-				if (schowek == choroba) {
-					cout << "lekiem dzialajacym na te chorobe jest: " + nazwazpliku << endl;
+				while (schowek != NULL) {
+					if (schowek == choroba) {
+						cout << "lekiem dzialajacym na te chorobe jest: " + nazwazpliku << endl;
+					}
+					schowek = strtok(NULL, " ");
 				}
-				schowek = strtok(NULL, " ");
 			}
 		}
 		plik.close();
@@ -158,14 +200,15 @@ void Magazyn::usunlekzzamiennikow(string nazwaleku)
 			strcpy(skonwertowany, linia.c_str());
 			schowek = strtok(skonwertowany, " ");
 
-			cout << schowek << endl;
-			nazwalekuzpliku = schowek;
-			if (nazwaleku != nazwalekuzpliku) {
-				liniezpliku.push_back(linia);
+			if (linia.compare("") != 0)
+			{
+				nazwalekuzpliku = schowek;
+				if (nazwaleku != nazwalekuzpliku) {
+					liniezpliku.push_back(linia);
 
 
+				}
 			}
-
 			delete skonwertowany;
 		}
 		plik.close();
@@ -201,7 +244,7 @@ void Magazyn::zmniejszilosclekowojeden(string nazwaleku, string nazwarodzaju)
 		string nazwalekuzpliku;
 		bool refundacja;
 		double cena;
-		bool ograniczenia;
+		int ograniczenia;
 		string numerserii;
 		int iloscsztuk;
 		Listalekow* lista = NULL;
@@ -218,13 +261,13 @@ void Magazyn::zmniejszilosclekowojeden(string nazwaleku, string nazwarodzaju)
 				schowek = strtok(NULL, " ");
 				cena = stoi(schowek);
 				schowek = strtok(NULL, " ");
-				ograniczenia = schowek;
+				ograniczenia = stoi(schowek);
 				schowek = strtok(NULL, " ");
 				iloscsztuk = stoi(schowek);
 				schowek = strtok(NULL, " ");
 				numerserii = schowek;
 
-				if (nazwaleku == nazwalekuzpliku) {
+				if (nazwaleku.compare( nazwalekuzpliku)==0) {
 					znaleziono = true;
 					if (iloscsztuk <= 0) {
 						cout << "za malo leku: " + nazwaleku + " w bazie aby sprzedac, skontaktuj sie z managerem" << endl;
@@ -268,7 +311,7 @@ void Magazyn::uzupelnijlek(string nazwaleku, string nazwarodzaju, int nowailosc)
 		string nazwalekuzpliku;
 		bool refundacja;
 		double cena;
-		bool ograniczenia;
+		int ograniczenia;
 		int iloscsztuk;
 		string numerserii;
 		Listalekow* lista = NULL;
@@ -285,13 +328,13 @@ void Magazyn::uzupelnijlek(string nazwaleku, string nazwarodzaju, int nowailosc)
 				schowek = strtok(NULL, " ");
 				cena = stoi(schowek);
 				schowek = strtok(NULL, " ");
-				ograniczenia = schowek;
+				ograniczenia = stoi(schowek);
 				schowek = strtok(NULL, " ");
 				iloscsztuk = stoi(schowek);
 				schowek = strtok(NULL, " ");
 				numerserii = schowek;
 
-				if (nazwaleku == nazwalekuzpliku) {
+				if (nazwaleku.compare(nazwalekuzpliku)==0) {
 					iloscsztuk = nowailosc;
 				}
 				Lek* lek = new Lek(nazwalekuzpliku, refundacja, cena, ograniczenia, numerserii, iloscsztuk);
@@ -322,7 +365,7 @@ void Magazyn::wypiszlistedopliku(string nazwarodzaju, Listalekow* lista) //metod
 		while (przechowywatorglowy)
 		{
 			plik << przechowywatorglowy->lek->getNazwaleku() << " " << przechowywatorglowy->lek->getRefundacja() <<
-				" " << przechowywatorglowy->lek->getCena() << " " << przechowywatorglowy->lek->getOgraniczenia() << " " << przechowywatorglowy->lek->getIloscsztuk() << przechowywatorglowy->lek->getNumerserii() << '\n';
+				" " << przechowywatorglowy->lek->getCena() << " " << przechowywatorglowy->lek->getOgraniczenia() << " " << przechowywatorglowy->lek->getIloscsztuk() <<" "<< przechowywatorglowy->lek->getNumerserii() << '\n';
 
 			przechowywatorglowy = przechowywatorglowy->pNext;
 		}

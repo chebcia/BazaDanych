@@ -42,6 +42,7 @@ Listalekow::~Listalekow()
 {
 	while (pNext) {
 		Listalekow* przechowywatorglowy = pNext->pNext;
+		delete pNext->lek;
 		delete pNext;
 		pNext = przechowywatorglowy;
 
@@ -93,15 +94,16 @@ void Listalekow::usunlekponazwie(string nazwaleku, Listalekow*& pHead)
 
 void Listalekow::wyczyscliste(Listalekow *& pHead)
 {
-	Listalekow* przechowywatorglowy = pHead->pNext;
-	while (przechowywatorglowy) {
-		
-		delete pHead->lek;
-		delete pHead;
-		pHead = przechowywatorglowy;
-		przechowywatorglowy = pHead->pNext;
+	delete pHead;
+	//Listalekow* przechowywatorglowy = pHead->pNext;
+	//while (przechowywatorglowy) {
+	//	
+	//	delete pHead->lek;
+	//	delete pHead;
+	//	pHead = przechowywatorglowy;
+	//	przechowywatorglowy = pHead->pNext;
 
-	}
+	//}
 
 
 }
